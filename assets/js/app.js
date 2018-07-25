@@ -2,6 +2,14 @@
 //////////////////////////// GifTastic Site ///////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+/*
+  possible APIs to combine with:
+  -- https://docs.sheetsu.com/#introduction
+  -- https://developer.wordnik.com
+
+*/
+
+
 /* 
   needs work (using rel line #s):
   -- makeCard() rel 30, 35
@@ -17,7 +25,7 @@ $(document).foundation();
 
 // giphy api key + url
 giphy_key = "gmUoQcltu2OqZuLZ9RXHRKoT7hR8CHrk";
-giphy_url = "https://api.giphy.com/v1/gifs/search?api_key=" + giphy_key + "&";
+giphy_url = `https://api.giphy.com/v1/gifs/search?api_key=${giphy_key}&`;
 
 // starting topics
 var topics = [];
