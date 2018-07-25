@@ -2,6 +2,14 @@
 //////////////////////////// GifTastic Site ///////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+/* 
+  needs work (using rel line #s):
+  -- makeCard() rel 30, 35
+*/
+
+// load foundation
+$(document).foundation();
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /*                               Variables                                   */
@@ -18,12 +26,10 @@ var topics = [];
 var div = $("<div>"),
   img = $("<img>");
 
+
 ///////////////////////////////////////////////////////////////////////////////
 /*                                Utility                                    */
 ///////////////////////////////////////////////////////////////////////////////
-
-// load foundation
-$(document).foundation();
 
 function makeCard(src) {
 // create and append card 
@@ -55,10 +61,12 @@ function makeCard(src) {
     class: 'card-section'
   });
 
+  // add stuff to innerDiv
+
   // append card-section (innerDiv) to card (div)
   div.append(innerDiv);
-};
 
+  // add card (div) to page
 }
 
 

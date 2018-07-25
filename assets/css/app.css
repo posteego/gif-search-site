@@ -1,0 +1,50 @@
+/********/
+/* DIVs */
+/********/
+.subheader {
+  color: black;
+  font-weight: 300;
+}
+
+.button.round {
+  border-radius: 15px;
+}
+
+.favorites {
+
+}
+
+.favorite-gifs{
+
+}
+
+.hr {
+
+}
+
+.gif-choice {
+
+}
+
+.gif-title {
+
+}
+
+.gifs {
+
+}
+
+.card {
+  height: 100%; /* remove to same height cards */
+}
+
+/********/
+/* IDs  */
+/********/
+#header {
+
+}
+
+#favorites-title {
+
+}

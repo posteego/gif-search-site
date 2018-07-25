@@ -5803,3 +5803,16 @@ a.thumbnail {
 
 .long-delay {
   animation-delay: 700ms !important; }
+
+@media screen and (max-width: 39.9375em) {
+  .button.small-only-expanded {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0; } }
+@media screen and (max-width: 63.9375em) {
+  .button.medium-down-expanded {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0; } }
