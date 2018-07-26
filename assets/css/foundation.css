@@ -508,7 +508,7 @@ textarea {
 .grid-container {
   padding-right: 0.625rem;
   padding-left: 0.625rem;
-  max-width: 75rem;
+  max-width: 90rem; /* OG: 75rem */
   margin: 0 auto; }
   @media print, screen and (min-width: 40em) {
     .grid-container {
@@ -2301,7 +2301,7 @@ a {
 
 hr {
   clear: both;
-  max-width: 75rem;
+  max-width: content-box; /* OG 75rem */
   height: 0;
   margin: 1.25rem auto;
   border-top: 0;

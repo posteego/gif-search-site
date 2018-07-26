@@ -6,8 +6,9 @@
   font-weight: 300;
 }
 
-.button.round {
-  border-radius: 15px;
+.button
+  .round {
+    border-radius: 15px;
 }
 
 .favorites {
@@ -24,6 +25,18 @@
 
 .gif-choice {
 
+}
+
+.search-div {
+
+}
+
+.form {
+  
+}
+
+.search-btn {
+  padding: 8px;
 }
 
 .gif-title {

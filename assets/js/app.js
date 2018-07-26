@@ -28,11 +28,13 @@ giphy_key = "gmUoQcltu2OqZuLZ9RXHRKoT7hR8CHrk";
 giphy_url = `https://api.giphy.com/v1/gifs/search?api_key=${giphy_key}&`;
 
 // starting topics
-var topics = [];
+var topics = ['spiderman', 'superman', 'batman', 'shazam',
+  'captain america', 'iron man'];
 
 // ease-of-access vars
 var div = $("<div>"),
-  img = $("<img>");
+  img = $("<img>"),
+  log = console.log;
 
 
 ///////////////////////////////////////////////////////////////////////////////
