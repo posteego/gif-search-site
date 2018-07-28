@@ -1,9 +1,19 @@
+/************/
+/* ELEMENTs */
+/************/
+
+
 /********/
 /* DIVs */
 /********/
+
+.heading {
+}
+
 .subheader {
   color: black;
   font-weight: 300;
+  margin-bottom: 1%;
 }
 
 .button
@@ -11,28 +21,13 @@
     border-radius: 15px;
 }
 
-.favorites {
-
-}
-
-.favorite-gifs{
-
-}
-
-.hr {
-
-}
-
 .gif-choice {
-
 }
 
 .search-div {
-
 }
 
-.form {
-  
+.form { 
 }
 
 .search-btn {
@@ -40,24 +35,35 @@
 }
 
 .gif-title {
-
 }
 
 .gifs {
-
 }
 
 .card {
   height: 100%; /* remove to same height cards */
 }
 
+.hr {
+}
+
+.favorites {
+}
+
+.favorite-gifs{
+}
+
 /********/
 /* IDs  */
 /********/
 #header {
-
+  margin-top: 2%;
 }
 
 #favorites-title {
+}
 
+#credits {
+  font-size: 12px;
+  margin: 20px 0 10px 0;
 }

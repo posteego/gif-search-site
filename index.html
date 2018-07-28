@@ -11,131 +11,143 @@
 </head>
 
 <body>
+
+  <div class="heading text-center">
+    <h1 id="header">GifTastic Site</h1>
+    <p class="subheader">
+      <strong>Click</strong> on a topic to load gifs underneath,
+      <strong>add</strong> a topic of your own, or
+      <strong>'like'</strong> and
+      <strong>download</strong> your favorite gifs!</p>
+    <button class="button hollow">Topic 1</button>
+    <button class="button hollow">Topic 2</button>
+  </div>
+
   <article class="grid-container">
 
-    <div class="grid-y grid-margin-y">
+    <div class="grid-x">
 
-      <div class="medium-7 large-6 text-center cell">
-        <h1 id="header">GifTastic Site</h1>
-        <p class="subheader">
-          <strong>Click</strong> on a topic to load gifs underneath,
-          <strong>add</strong> a topic of your own, or
-          <strong>'like'</strong> and
-          <strong>download</strong> your favorite gifs!</p>
-        <button class="button hollow">Topic 1</button>
-        <button class="button hollow">Topic 2</button>
-      </div>
+      <div class="medium-order-2 main cell medium-up-7">
 
-      <div class="favorites cell">
-
-        <h3 id="favorites-title">Favorites</h3>
-        <div class="favorite-gifs show-for-small small-3">
-
-          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
-          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
-          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
-          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
-          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
-        </div>
-
-      </div>
-
-      <div class="gif-choice">
+        <div class="gif-choice">
 
           <div class="search-div callout warning">
             <form class="form">
-                <input type="text" placeholder="Search all the gifs!">
-                <button type="submit" class="search-btn button medium-down-expanded">
-                  <img src="assets/images/resize_search.png">
-                </button>
+              <input type="text" placeholder="Search all the gifs!">
+              <button type="submit" class="search-btn button black medium-down-expanded">
+                <img src="assets/images/search.png">
+              </button>
             </form>
           </div>
+
+          <div class="hr">
+            <hr>
+          </div>
+          <div class="gif-title text-center">
+            <p class="lead topic">GifTastic GIF's</p>
+          </div>
+          <div class="gifs grid-x grid-margin-x small-up-1 medium-up-3 large-up-5 align-center">
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/100">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/300/200">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/200">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/100">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/200">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/100">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/300/200">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/200">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/100">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+            <div class="cell card">
+              <img src="http://fillmurray.com/200/200">
+              <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="">
+          <a class="button hollow expanded">Load More</a>
+        </div>
+
+        <div id="credits">Icons made by
+          <a href="https://www.flaticon.com/authors/egor-rumyantsev" title="Egor Rumyantsev">Egor Rumyantsev</a> from
+          <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+          <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+            target="_blank">CC 3.0 BY</a>
+        </div>
+
       </div>
 
-      <div class="hr">
-        <hr>
-      </div>
+      <div class="medium-order-1 favorites cell medium-up-5">
 
-      <div class="gif-title text-center">
-        <p class="lead topic">GifTastic GIF's</p>
-      </div>
-      <div class="gifs grid-x grid-margin-x small-up-1 medium-up-3 large-up-5 align-center">
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/100">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/300/200">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/200">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/100">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/200">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
+        <h3 id="favorites-title">Favorites</h3>
+        <div class="favorite-gifs show-for-small">
 
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/100">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/300/200">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/200">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/100">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
-        </div>
-        <div class="cell card">
-          <img src="http://fillmurray.com/200/200">
-          <div class="card-section">
-            <h4>This is a card.</h4>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          </div>
+          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
+          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
+          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
+          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
+          <img src="https://placehold.it/200x200&text=PSR1257 + 12 C" alt="picture of space">
         </div>
       </div>
     </div>
-    <div class="">
-      <a class="button hollow expanded">Load More</a>
-    </div>
+
   </article>
 
 

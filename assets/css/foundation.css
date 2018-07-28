@@ -508,7 +508,7 @@ textarea {
 .grid-container {
   padding-right: 0.625rem;
   padding-left: 0.625rem;
-  max-width: 90rem; /* OG: 75rem */
+  max-width: 80rem; /* OG: 75rem */
   margin: 0 auto; }
   @media print, screen and (min-width: 40em) {
     .grid-container {
@@ -2053,7 +2053,7 @@ textarea {
   -ms-flex-order: 6;
       order: 6; }
 
-@media print, screen and (min-width: 40em) {
+@media print, screen and (max-width: 768px/*40em*/) {
   .medium-order-1 {
     -ms-flex-order: 1;
         order: 1; }
@@ -2490,7 +2490,7 @@ ul.no-bullet, ol.no-bullet {
 .button {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 0 1rem 0;
+  margin: 0 0.25rem 1rem 0.25rem;
   font-family: inherit;
   padding: 0.85em 1em;
   -webkit-appearance: none;
@@ -2548,6 +2548,12 @@ ul.no-bullet, ol.no-bullet {
     color: #fefefe; }
     .button.alert:hover, .button.alert:focus {
       background-color: #a53b2a;
+      color: #fefefe; }
+  .button.black {
+    background-color: black;
+    color: #fefefe; }
+    .button.black:hover, .button.black:focus {
+      background-color: #2f2f2f;
       color: #fefefe; }
   .button.disabled, .button[disabled] {
     opacity: 0.25;
@@ -2643,6 +2649,15 @@ ul.no-bullet, ol.no-bullet {
         .button.hollow.alert:hover.disabled, .button.hollow.alert:hover[disabled], .button.hollow.alert:focus.disabled, .button.hollow.alert:focus[disabled] {
           border: 1px solid #cc4b37;
           color: #cc4b37; }
+    .button.hollow.black {
+      border: 1px solid black;
+      color: black; }
+      .button.hollow.black:hover, .button.hollow.black:focus {
+        border-color: #2f2f2f;
+        color: #2f2f2f; }
+        .button.hollow.black:hover.disabled, .button.hollow.black:hover[disabled], .button.hollow.black:focus.disabled, .button.hollow.black:focus[disabled] {
+          border: 1px solid black;
+          color: black; }
   .button.clear {
     border: 1px solid #1779ba;
     color: #1779ba; }
