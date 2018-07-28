@@ -35,8 +35,17 @@
 }
 
 .topic-title {
+  font-size: 26px;
   font-family: var(--sub);
   font-weight: 500;
+}
+
+.button-div {
+  flex-shrink: 0;
+}
+
+.gif-title, .rating {
+  flex: 1 0 auto;
 }
 
 .favorites-title {

@@ -9,12 +9,6 @@
 
 */
 
-
-/* 
-  needs work (using rel line #s):
-  -- makeCard() rel 30, 35
-*/
-
 // load foundation
 $(document).foundation();
 $(".load-more").hide();
@@ -91,7 +85,7 @@ function renderButtons() {
   }
 }
 
-function makeCard(still, animated, rating, title) {
+function makeCard(still, animated, dl, rating, title, liked) {
   // create and append card 
   /*
     <div class="cell card">
@@ -108,7 +102,11 @@ function makeCard(still, animated, rating, title) {
     gif = $("<img>"),
     pTitle = $("<p>"),
     pRating = $("<h6>"),
-    innerDiv = $("<div>");
+    innerDiv = $("<div>"),
+    btnDiv = $("<div>"),
+    likeBtn = $("<button>"),
+    dlLink = $("<a>"),
+    dlBtn = $("<button>");
 
   // set element classes and values
   // card div
@@ -127,6 +125,7 @@ function makeCard(still, animated, rating, title) {
   innerDiv.attr({
     class: 'card-section'
   });
+  // gif title
   pTitle.attr({
     class: 'gif-title h5',
   }).text(title);
@@ -137,13 +136,39 @@ function makeCard(still, animated, rating, title) {
     "Rated: " + rating
   );
 
+  btnDiv.attr({
+    class: 'button-div text-center'
+  });
+
+  dlBtn.attr({
+    class: 'button black',
+  }).text("Download");
+
+  dlLink.attr({
+    href: dl,
+    target: '_blank',
+    download: ''
+  }).append(dlBtn);
+
+  btnDiv.append(dlLink);
+
   // append elements
   card.append(gif);  // gif still -> card div
   innerDiv.append(pTitle); // gif-title -> non-gif div
   innerDiv.append(pRating); // rating -> non-gif div
+  if (liked === false) {
+    // make the like button if it isn't already liked
+    likeBtn.attr({
+      class: 'like button black hollow',
+      'data-still': still,
+      'data-animated': animated,
+      'data-state': false
+    }).text("Like");
+    btnDiv.append(likeBtn);
+  }
   card.append(innerDiv); // non-gif div -> card div
-  // add card to page
-  giflist.append(card);
+  card.append(btnDiv);
+  return card;
 }
 
 
@@ -177,9 +202,12 @@ function renderGifs(choice) {
     for (let i = 0; i < response.data.length; i++) {
       let still = response.data[i].images.fixed_height_still.url,
         animated = response.data[i].images.fixed_height.url,
+        dl = response.data[i].images.original.url,
         rating = response.data[i].rating.toUpperCase(),
         title = response.data[i].title;
-      makeCard(still, animated, rating, title);
+      let card = makeCard(still, animated, dl, rating, title, false);
+      // add card to page
+      giflist.append(card);
     }
   });
 }
@@ -249,8 +277,11 @@ loadBtn.on('click', function () {
       let still = response.data[i].images.fixed_height_still.url,
         animated = response.data[i].images.fixed_height.url,
         rating = response.data[i].rating.toUpperCase(),
+        dl = response.data[i].images.original.url,
         title = response.data[i].title;
-      makeCard(still, animated, rating, title);
+      let card = makeCard(still, animated, dl, rating, title, false);
+      // add card to page
+      giflist.append(card);
     }
   });
 });
