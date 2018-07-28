@@ -8,6 +8,7 @@
 /********/
 
 .heading {
+  margin-top: 2%;
 }
 
 .subheader {
@@ -16,9 +17,7 @@
   margin-bottom: 1%;
 }
 
-.button
-  .round {
-    border-radius: 15px;
+.button{
 }
 
 .gif-choice {
@@ -27,11 +26,13 @@
 .search-div {
 }
 
-.form { 
+.form {
+}
+
+.field {
 }
 
 .search-btn {
-  padding: 8px;
 }
 
 .gif-title {
@@ -41,7 +42,7 @@
 }
 
 .card {
-  height: 100%; /* remove to same height cards */
+  /* height: 100%; remove to have auto height cards */
 }
 
 .hr {
@@ -57,7 +58,10 @@
 /* IDs  */
 /********/
 #header {
-  margin-top: 2%;
+  font-family: 'Corben', cursive;
+}
+
+.topic {
 }
 
 #favorites-title {

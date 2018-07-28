@@ -25,7 +25,7 @@ $(document).foundation();
 
 // giphy api key + url
 giphy_key = "gmUoQcltu2OqZuLZ9RXHRKoT7hR8CHrk";
-giphy_url = `https://api.giphy.com/v1/gifs/search?api_key=${giphy_key}&`;
+giphy_url = `https://api.giphy.com/v1/gifs/search?api_key=${giphy_key}&limit=10&`;
 
 // starting topics
 var topics = ['Spiderman', 'Superman', 'Batman', 'Shazam',
@@ -61,7 +61,7 @@ function renderButtons() {
     let button = $("<button>");
     // add classes to button
     button.attr({
-      class: 'button black hollow'
+      class: 'topic button black hollow'
     });
     // add text to button
     button.text(topics[i]);
@@ -73,8 +73,8 @@ function renderButtons() {
 function makeCard(src) {
   // create and append card 
   /*
-    <div class="card">
-      <img src="http://fillmurray.com/500/300">
+    <div class="cell card">
+      <img src="http://fillmurray.com/300/200">
       <div class="card-section">
         <h4>This is a card.</h4>
         <p>It has an easy to override visual style, and is appropriately subdued.</p>
@@ -84,7 +84,7 @@ function makeCard(src) {
 
   // create card div
   div.attr({
-    class: 'card'
+    class: 'cell card'
   });
 
   // put img src in img element
@@ -112,3 +112,14 @@ function makeCard(src) {
 ///////////////////////////////////////////////////////////////////////////////
 /*                               Functions                                   */
 ///////////////////////////////////////////////////////////////////////////////
+
+$(".topic").on('click', function () {
+  let choice = $(this).text();
+  
+  $.ajax({
+    url: giphy_url + `q=${choice}`,
+    method: 'GET'
+  }).then(function (response) {
+    log(response);
+  });
+});
