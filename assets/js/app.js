@@ -251,7 +251,6 @@ search.on('click', function (event) {
 
   // show gifs
   renderGifs(newTopic);
-
 });
 
 // certain gif is clicked
