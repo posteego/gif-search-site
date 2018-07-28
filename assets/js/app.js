@@ -18,6 +18,9 @@
 // load foundation
 $(document).foundation();
 $(".load-more").hide();
+$("#credits").hide();
+$(".hr").hide();
+$(".favorites").hide();
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -148,6 +151,10 @@ function renderGifs(choice) {
   giflist.empty();
   // show .load-more button
   loadBtn.show();
+  // show credits for search icon
+  $("#credits").show();
+  // show hr
+  $(".hr").show();
   // reset offset
   offset = 0;
 
@@ -159,7 +166,6 @@ function renderGifs(choice) {
     url: giphy_url + `q=${choice}`,
     method: 'GET'
   }).then(function (response) {
-    log(response);
     // make cards for the page for each gif
     for (let i = 0; i < response.data.length; i++) {
       let still = response.data[i].images.fixed_height_still.url,
@@ -205,7 +211,6 @@ search.on('click', function (event) {
 
 // certain gif is clicked
 $(document).on('click', '.gif', function () {
-  log($(this).attr('src'));
   let state = $(this).attr('data-state');
 
   if (state === 'still') {
