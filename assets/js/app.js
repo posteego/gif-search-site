@@ -17,6 +17,7 @@
 
 // load foundation
 $(document).foundation();
+$(".load-more").hide();
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -27,18 +28,22 @@ $(document).foundation();
 giphy_key = "gmUoQcltu2OqZuLZ9RXHRKoT7hR8CHrk";
 giphy_url = `https://api.giphy.com/v1/gifs/search?api_key=${giphy_key}&limit=10&`;
 
-// starting topics
-var topics = ['Spiderman', 'Superman', 'Batman',
-  'Captain America', 'Iron Man'];
-
 // ease-of-access vars
 var p = $("<p>"),
   log = console.log;
 
-var giflist = $(".gifs");
+var buttonsview = $(".buttons-view"),
+  giflist = $(".gifs"),
+  title = $(".topic-title"),
+  loadBtn = $(".load-more"),
+  search = $(".search-btn"),
+  topic = ".topic";
 
-// does the last row have 3 gifs?
-var row = 1; // 10 gifs at a time, 1 gif in last row in beginning
+// other vars
+// starting topics
+var topics = ['Spiderman', 'Superman', 'Batman',
+  'Captain America', 'Iron Man'];
+var offset = 0; // offset for loading more gifs of the same topic
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,10 +57,21 @@ renderButtons();
 /*                                Utility                                    */
 ///////////////////////////////////////////////////////////////////////////////
 
+// taken from stack overflow
+function toTitleCase(str) {
+  return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+    function (firstLetter) {
+      return firstLetter.toUpperCase();
+    });
+}
+
+
 function renderButtons() {
   // render buttons in topics array
   /* <button class="button hollow">Topic 1</button> */
-    // append to .buttons-view
+  // append to .buttons-view
+
+  buttonsview.empty();
 
   for (let i = 0; i < topics.length; i++) {
     // create button for each topic
@@ -67,11 +83,11 @@ function renderButtons() {
     // add text to button
     button.text(topics[i]);
     // append to .buttons-view
-    $(".buttons-view").append(button);
+    buttonsview.append(button);
   }
 }
 
-function makeCard(src, rating) {
+function makeCard(still, animated, rating) {
   // create and append card 
   /*
     <div class="cell card">
@@ -82,44 +98,43 @@ function makeCard(src, rating) {
       </div>
     </div>
   */
-  // make divs, img, p
-  let div = $("<div>"),
-    img = $("<img>"),
-    p = $("<p>"),
+
+  // create HTML elements
+  let card = $("<div>"),
+    gif = $("<img>"),
+    pRating = $("<p>"),
     innerDiv = $("<div>");
-  
-  // create card div
-  div.attr({
+
+  // set element classes and values
+  // card div
+  card.attr({
     class: 'cell card'
   });
-
-  // put img src in img element
-  img.attr({
-    src: src
+  // img element
+  gif.attr({
+    src: still,
+    class: 'gif',
+    'data-still': still,
+    'data-animated': animated,
+    'data-state': 'still'
   });
-
-  div.append(img);  // append img to card
-
-  // create card-section div (where non img stuff goes)
+  // non-gif card section
   innerDiv.attr({
     class: 'card-section'
   });
-
-  // add rating to innerDiv
-  p.attr({
+  // p element (rating)
+  pRating.attr({
     class: "rating"
   }).text(
     "Rating: " + rating
   );
 
-  innerDiv.append(p);
-
-
-  // append card-section (innerDiv) to card (div)
-  div.append(innerDiv);
-
-  // add card (div) to page
-  giflist.append(div);
+  // append elements
+  card.append(gif);  // gif still -> card div
+  innerDiv.append(pRating); // rating -> non-gif div
+  card.append(innerDiv); // non-gif div -> card div
+  // add card to page
+  giflist.append(card);
 }
 
 
@@ -127,18 +142,101 @@ function makeCard(src, rating) {
 /*                               Functions                                   */
 ///////////////////////////////////////////////////////////////////////////////
 
-$(".topic").on('click', function () {
-  let choice = $(this).text();
-  
+// show gifs
+function renderGifs(choice) {
+  // empty the previous search
+  giflist.empty();
+  // show .load-more button
+  loadBtn.show();
+  // reset offset
+  offset = 0;
+
+  // put topic in .topic-title
+  title.text(choice);
+
+  // api call
   $.ajax({
     url: giphy_url + `q=${choice}`,
     method: 'GET'
-  }).then(function(response) {
+  }).then(function (response) {
     log(response);
+    // make cards for the page for each gif
     for (let i = 0; i < response.data.length; i++) {
-      let src = response.data[i].images.fixed_height_still.url;
-      let rating = response.data[i].rating.toUpperCase();
-      makeCard(src, rating);
+      let still = response.data[i].images.fixed_height_still.url,
+        animated = response.data[i].images.fixed_height.url,
+        rating = response.data[i].rating.toUpperCase();
+      makeCard(still, animated, rating);
+    }
+  });
+}
+
+// button up top is clicked
+$(document).on('click', topic, function () {
+
+  // get text from button
+  let choice = $(this).text();
+  // show gifs
+  renderGifs(choice);
+});
+
+// topic is added
+search.on('click', function (event) {
+  // prevent page from refreshing
+  event.preventDefault();
+  // get new topic text
+  let newTopic = $(".field").val().trim();
+  // clear text field
+  $(".field").val('');
+  // do nothing if empty string
+  if (newTopic === '')
+    return;
+  
+  // capitalize first letter of each word string
+  newTopic = toTitleCase(newTopic);
+  //newTopic = newTopic.charAt(0).toUpperCase() + newTopic.slice(1);
+
+  topics.push(newTopic); // add newTopic to topics array
+  renderButtons();  // render new buttons
+
+  // show gifs
+  renderGifs(newTopic);
+
+});
+
+// certain gif is clicked
+$(document).on('click', '.gif', function () {
+  log($(this).attr('src'));
+  let state = $(this).attr('data-state');
+
+  if (state === 'still') {
+    $(this).attr({
+      src: $(this).attr('data-animated'),
+      'data-state': 'animated'
+    });
+  } else {
+    $(this).attr({
+      src: $(this).attr('data-still'),
+      'data-state': 'still'
+    });
+  }
+});
+
+// .load-more button is clicked
+loadBtn.on('click', function () {
+  offset += 10; // increase the offset so we don't repeat gifs
+  let current_topic = title.text(); // get relevant topic from .topic-title
+
+  $.ajax({
+    // query url with offset value
+    url: giphy_url + `q=${current_topic}&offset=${offset}`,
+    method: 'GET'
+  }).then(function (response) {
+    // make cards for each gif
+    for (let i = 0; i < response.data.length; i++) {
+      let still = response.data[i].images.fixed_height_still.url,
+        animated = response.data[i].images.fixed_height.url,
+        rating = response.data[i].rating.toUpperCase();
+      makeCard(still, animated, rating);
     }
   });
 });
