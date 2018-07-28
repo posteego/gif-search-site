@@ -14,7 +14,7 @@ $(document).foundation();
 $(".load-more").hide();
 $("#credits").hide();
 $(".hr").hide();
-$(".favorites").hide();
+$(".favorites")
 $(".toggle-favs").hide();
 
 
@@ -41,6 +41,7 @@ var buttonsview = $(".buttons-view"),
 // starting topics
 var topics = ['Spiderman', 'Superman', 'Batman',
   'Captain America', 'Iron Man'];
+var liked = 0;
 var offset = 0; // offset for loading more gifs of the same topic
 
 
@@ -85,7 +86,7 @@ function renderButtons() {
   }
 }
 
-function makeCard(still, animated, dl, rating, title, liked) {
+function makeCard(still, animated, dl, rating, title, did_like) {
   // create and append card 
   /*
     <div class="cell card">
@@ -156,15 +157,23 @@ function makeCard(still, animated, dl, rating, title, liked) {
   card.append(gif);  // gif still -> card div
   innerDiv.append(pTitle); // gif-title -> non-gif div
   innerDiv.append(pRating); // rating -> non-gif div
-  if (liked === false) {
+  if (did_like === false) {
     // make the like button if it isn't already liked
     likeBtn.attr({
       class: 'like button black hollow',
+      'data-order': 0,
+      'data-rating': rating,
+      'data-title': title,
+      'data-download': dl,
       'data-still': still,
       'data-animated': animated,
       'data-state': false
     }).text("Like");
     btnDiv.append(likeBtn);
+  } else {
+    card.attr({
+      class: liked
+    })
   }
   card.append(innerDiv); // non-gif div -> card div
   card.append(btnDiv);
@@ -284,4 +293,34 @@ loadBtn.on('click', function () {
       giflist.append(card);
     }
   });
+});
+
+$(document).on('click', '.like', function () {
+  let it = $(this);
+  $(".toggle-favs").show();
+  let likeNum = it.attr('data-order');
+  log(it.attr('data-state'));
+
+  // unlike a gif
+  if (it.attr('data-state') === 'true') {
+    it.attr('data-state', false);
+    log(it.attr('data-state'));
+    it.text('Like');
+    // remove gif from liked array
+    $('.' + likeNum).remove();
+    liked--;
+  } else {
+    liked++;
+    it.attr('data-state', true);
+    it.attr('data-order', liked);
+    log(it.attr('data-order'));
+    it.text('Unlike');
+    let gifStill = it.attr('data-still'),
+      gifAnimated = it.attr('data-animated'),
+      dl = it.attr('data-download'),
+      rating = it.attr('data-rating'),
+      title = it.attr('data-title');
+    let card = makeCard(gifStill, gifAnimated, dl, rating, title, true);
+    $(".favorite-gifs").append(card);
+  }
 });
