@@ -244,7 +244,13 @@ search.on('click', function (event) {
 
   // capitalize first letter of each word string
   newTopic = toTitleCase(newTopic);
-  //newTopic = newTopic.charAt(0).toUpperCase() + newTopic.slice(1);
+
+  // do nothing if topic is already in array
+  if (topics.indexOf(newTopic) != -1) {
+    // show gifs
+    renderGifs(newTopic);
+    return;
+  }
 
   topics.push(newTopic); // add newTopic to topics array
   renderButtons();  // render new buttons
