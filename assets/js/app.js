@@ -241,7 +241,7 @@ search.on('click', function (event) {
   // do nothing if empty string
   if (newTopic === '')
     return;
-  
+
   // capitalize first letter of each word string
   newTopic = toTitleCase(newTopic);
   //newTopic = newTopic.charAt(0).toUpperCase() + newTopic.slice(1);
@@ -295,6 +295,8 @@ loadBtn.on('click', function () {
   });
 });
 
+
+// like a gif and add to favorites
 $(document).on('click', '.like', function () {
   let it = $(this);
   $(".toggle-favs").show();
