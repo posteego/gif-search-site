@@ -1,4 +1,12 @@
 /************/
+/*   VARs   */
+/************/
+:root {
+  --head : 'Corben', cursive;
+  --sub : 'Montserrat', sans-serif;
+}
+
+/************/
 /* ELEMENTs */
 /************/
 
@@ -42,7 +50,7 @@
 }
 
 .card {
-  /* height: 100%; remove to have auto height cards */
+  /* height: 100%; remove to have auto height cards  */
 }
 
 .hr {
@@ -58,13 +66,17 @@
 /* IDs  */
 /********/
 #header {
-  font-family: 'Corben', cursive;
+  font-family: var(--head);
 }
 
 .topic {
+  font-family: var(--sub);
+  font-weight: 500;
 }
 
-#favorites-title {
+.favorites-title {
+  font-family: var(--sub);
+  font-weight: 300;
 }
 
 #credits {

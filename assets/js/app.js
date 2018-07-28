@@ -28,13 +28,14 @@ giphy_key = "gmUoQcltu2OqZuLZ9RXHRKoT7hR8CHrk";
 giphy_url = `https://api.giphy.com/v1/gifs/search?api_key=${giphy_key}&limit=10&`;
 
 // starting topics
-var topics = ['Spiderman', 'Superman', 'Batman', 'Shazam',
+var topics = ['Spiderman', 'Superman', 'Batman',
   'Captain America', 'Iron Man'];
 
 // ease-of-access vars
-var div = $("<div>"),
-  img = $("<img>"),
+var p = $("<p>"),
   log = console.log;
+
+var giflist = $(".gifs");
 
 // does the last row have 3 gifs?
 var row = 1; // 10 gifs at a time, 1 gif in last row in beginning
@@ -70,7 +71,7 @@ function renderButtons() {
   }
 }
 
-function makeCard(src) {
+function makeCard(src, rating) {
   // create and append card 
   /*
     <div class="cell card">
@@ -81,7 +82,12 @@ function makeCard(src) {
       </div>
     </div>
   */
-
+  // make divs, img, p
+  let div = $("<div>"),
+    img = $("<img>"),
+    p = $("<p>"),
+    innerDiv = $("<div>");
+  
   // create card div
   div.attr({
     class: 'cell card'
@@ -95,17 +101,25 @@ function makeCard(src) {
   div.append(img);  // append img to card
 
   // create card-section div (where non img stuff goes)
-  let innerDiv = $("<div>");
   innerDiv.attr({
     class: 'card-section'
   });
 
-  // add stuff to innerDiv
+  // add rating to innerDiv
+  p.attr({
+    class: "rating"
+  }).text(
+    "Rating: " + rating
+  );
+
+  innerDiv.append(p);
+
 
   // append card-section (innerDiv) to card (div)
   div.append(innerDiv);
 
   // add card (div) to page
+  giflist.append(div);
 }
 
 
@@ -119,7 +133,12 @@ $(".topic").on('click', function () {
   $.ajax({
     url: giphy_url + `q=${choice}`,
     method: 'GET'
-  }).then(function (response) {
+  }).then(function(response) {
     log(response);
+    for (let i = 0; i < response.data.length; i++) {
+      let src = response.data[i].images.fixed_height_still.url;
+      let rating = response.data[i].rating.toUpperCase();
+      makeCard(src, rating);
+    }
   });
 });
