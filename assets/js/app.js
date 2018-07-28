@@ -253,6 +253,10 @@ search.on('click', function (event) {
   }
 
   topics.push(newTopic); // add newTopic to topics array
+  // remove first topic if array too long
+  if (topics.length > 7)
+    topics.splice(0, 1);
+  
   renderButtons();  // render new buttons
 
   // show gifs
