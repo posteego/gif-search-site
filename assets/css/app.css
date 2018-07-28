@@ -1,5 +1,5 @@
 /************/
-/*   VARs   */
+/*   VARS   */
 /************/
 :root {
   --head : 'Corben', cursive;
@@ -15,6 +15,15 @@
 /* CLASSES */
 /***********/
 
+.gif-title {
+  font-variant: all-small-caps;
+  font-weight: 500;
+}
+
+.toggle-favs {
+  margin: 0 10px;
+}
+
 .heading {
   margin-top: 2%;
 }
@@ -25,7 +34,7 @@
   margin-bottom: 1%;
 }
 
-.topic {
+.topic-title {
   font-family: var(--sub);
   font-weight: 500;
 }
@@ -35,46 +44,10 @@
   font-weight: 300;
 }
 
-.button{
-}
 
-.gif-choice {
-}
-
-.search-div {
-}
-
-.form {
-}
-
-.field {
-}
-
-.search-btn {
-}
-
-.gif-title {
-}
-
-.gifs {
-}
-
-.card {
-  /* height: 100%; remove to have auto height cards  */
-}
-
-.hr {
-}
-
-.favorites {
-}
-
-.favorite-gifs{
-}
-
-/********/
-/* IDs  */
-/********/
+/*********/
+/*  IDS  */
+/*********/
 #header {
   font-family: var(--head);
 }

@@ -21,6 +21,7 @@ $(".load-more").hide();
 $("#credits").hide();
 $(".hr").hide();
 $(".favorites").hide();
+$(".toggle-favs").hide();
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -90,7 +91,7 @@ function renderButtons() {
   }
 }
 
-function makeCard(still, animated, rating) {
+function makeCard(still, animated, rating, title) {
   // create and append card 
   /*
     <div class="cell card">
@@ -105,7 +106,8 @@ function makeCard(still, animated, rating) {
   // create HTML elements
   let card = $("<div>"),
     gif = $("<img>"),
-    pRating = $("<p>"),
+    pTitle = $("<p>"),
+    pRating = $("<h6>"),
     innerDiv = $("<div>");
 
   // set element classes and values
@@ -125,15 +127,19 @@ function makeCard(still, animated, rating) {
   innerDiv.attr({
     class: 'card-section'
   });
+  pTitle.attr({
+    class: 'gif-title h5',
+  }).text(title);
   // p element (rating)
   pRating.attr({
-    class: "rating"
+    class: 'rating subheader'
   }).text(
-    "Rating: " + rating
+    "Rated: " + rating
   );
 
   // append elements
   card.append(gif);  // gif still -> card div
+  innerDiv.append(pTitle); // gif-title -> non-gif div
   innerDiv.append(pRating); // rating -> non-gif div
   card.append(innerDiv); // non-gif div -> card div
   // add card to page
@@ -159,19 +165,21 @@ function renderGifs(choice) {
   offset = 0;
 
   // put topic in .topic-title
-  title.text(choice);
+  title.html(choice);
 
   // api call
   $.ajax({
     url: giphy_url + `q=${choice}`,
     method: 'GET'
   }).then(function (response) {
+    log(response);
     // make cards for the page for each gif
     for (let i = 0; i < response.data.length; i++) {
       let still = response.data[i].images.fixed_height_still.url,
         animated = response.data[i].images.fixed_height.url,
-        rating = response.data[i].rating.toUpperCase();
-      makeCard(still, animated, rating);
+        rating = response.data[i].rating.toUpperCase(),
+        title = response.data[i].title;
+      makeCard(still, animated, rating, title);
     }
   });
 }
@@ -240,8 +248,9 @@ loadBtn.on('click', function () {
     for (let i = 0; i < response.data.length; i++) {
       let still = response.data[i].images.fixed_height_still.url,
         animated = response.data[i].images.fixed_height.url,
-        rating = response.data[i].rating.toUpperCase();
-      makeCard(still, animated, rating);
+        rating = response.data[i].rating.toUpperCase(),
+        title = response.data[i].title;
+      makeCard(still, animated, rating, title);
     }
   });
 });
