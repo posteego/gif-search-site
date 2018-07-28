@@ -10,6 +10,9 @@
 /* ELEMENTS */
 /************/
 
+a {
+  color: black;
+}
 
 /***********/
 /* CLASSES */
@@ -40,11 +43,12 @@
   font-weight: 500;
 }
 
-.button-div {
+.button-div, .footer {
   flex-shrink: 0;
+  margin-bottom: 10px;
 }
 
-.gif-title, .rating {
+.gif-title, .rating, .main {
   flex: 1 0 auto;
 }
 
@@ -53,6 +57,15 @@
   font-weight: 300;
 }
 
+#link {
+  color: black;
+  font-weight: 600;
+}
+#link:hover {
+  transition: .25s;
+  background-color: black;
+  color: white;
+}
 
 /*********/
 /*  IDS  */
